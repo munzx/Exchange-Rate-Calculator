@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>Currency Exchange Rate</title>
+	<!-- CSS asset files -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/theme.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<!-- App CSS file -->
+	<link rel="stylesheet" type="text/css" href="/public/style.css">
+	<!-- view port -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- required to remove the # symbole -->
+	<base href="/">
+</head>
+<body>
+    
+    <div class="row" ng-controller="home">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="jumbotron">
+                <h3 class="text-center">Currency Exchange Calculator</h3>
+                <p>&nbsp;</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="col-md-12">
+                                <button ng-disabled="!base.name || !base.amount" class="btn btn-default btn-md" ng-click="addCurrency()">
+                                    Add Currency
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" ng-model="base.name" placeholder="Base Currency Name">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" ng-model="base.amount" placeholder="Amount">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                             <table class="table table-stripped">
+                                 <thead  ng-show="currency.length">
+                                    <tr>
+                                        <th>Currency</th>
+                                        <th>Sell</th>
+                                        <th>Buy</th>
+                                        <th>Total</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr ng-repeat="c in currency">
+                                        <td>
+                                            <input type="text" ng-model="result[$index].name" class="form-control" placeholder="Name">
+                                        </td>
+                                        <td>
+                                            <input type="number" ng-model="result[$index].sell" class="form-control" placeholder="Sell Price">
+                                        </td>
+                                        <td>
+                                            <input type="number" ng-model="result[$index].buy" class="form-control" placeholder="Buy Price">
+                                        </td>
+                                        <td>
+                                            <h4 ng-bind="calculateTotal($index)"></h4>
+                                        </td>
+                                        <td>
+                                            <a href="" ng-click="removeCurrency($index)">
+                                                <span style="padding-top: 10px;" class="glyphicon glyphicon-remove"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Angular -->
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js" ></script>
+    <!-- angular bootstrap -->
+    <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<!-- App JS file -->
+	<script type="text/javascript" src="/public/app.js"></script>
+
+</html>
